@@ -14,7 +14,16 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
-  }
+    "crypto": "^1.0.1",
+    "express": "^5.1.0",
+    "razorpay": "^2.9.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t717824i312-cloud/deepamukil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/t717824i312-cloud/deepamukil/issues"
+  },
+  "homepage": "https://github.com/t717824i312-cloud/deepamukil#readme"
 }
-
