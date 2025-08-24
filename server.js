@@ -1,37 +1,24 @@
-<<<<<<< HEAD
 const express = require("express");
-const app = express();
+const cors = require("cors");
 
-// Root route
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Root route (just a simple response)
 app.get("/", (req, res) => {
   res.send("✅ Fee Portal Backend is Live!");
 });
 
-// Example API route
-app.get("/api/fees", (req, res) => {
-  res.json({ student: "Deepa", amount: 5000, status: "Paid" });
+// Example API route (you can add your own later)
+app.get("/api/test", (req, res) => {
+  res.json({ message: "API is working fine 🚀" });
 });
 
-const PORT = process.env.PORT || 3000;
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-=======
-const express = require("express");
-const path = require("path");
-
-const app = express();
-const PORT = 51091; // or process.env.PORT
-
-// Serve static files from "public" folder
-app.use(express.static(path.join(__dirname, "public")));
-
-// Default route → loads index.html
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
->>>>>>> 994bd3395f759771e9cf467c23f230e5a7c554fd
