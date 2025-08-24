@@ -1,29 +1,20 @@
 {
   "name": "fee-portal",
   "version": "1.0.0",
-<<<<<<< HEAD
   "description": "Fee portal backend API",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
-=======
-  "description": "",
-  "main": "index.js",
-  "scripts": {
->>>>>>> 994bd3395f759771e9cf467c23f230e5a7c554fd
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-=======
-  "type": "commonjs",
->>>>>>> 994bd3395f759771e9cf467c23f230e5a7c554fd
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
+
