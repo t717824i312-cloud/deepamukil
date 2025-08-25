@@ -101,7 +101,7 @@ function renderTable(){
   tbody.innerHTML='';
   state.items.forEach((it,i)=>{
     const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${it.type}</td><td>₹${it.amt}</td><td><button onclick="removeItem(${i})">Remove</button></td>`;
+    tr.innerHTML=<td>${it.type}</td><td>₹${it.amt}</td><td><button onclick="removeItem(${i})">Remove</button></td>;
     tbody.appendChild(tr);
   });
   updateTotal();
@@ -125,14 +125,13 @@ document.querySelectorAll('.tab').forEach(tab=>{
   });
 });
 
-function copyUPI(){navigator.clipboard.writeText('dhrdhanu66418@').then(()=>alert('UPI ID copied'));}
+function copyUPI(){navigator.clipboard.writeText('krishdpi2006@oksbi').then(()=>alert('UPI ID copied'));}
 
 function validateStudent(){
   if(!byId('studentName').value||!byId('roll').value||!byId('dept').value||!byId('sem').value){alert('Fill student details');return false;}
   return true;
 }
 
-// ✅ Backend posting function
 async function postFeeData(method, total) {
   const payload = {
     studentName: byId('studentName').value,
@@ -151,7 +150,7 @@ async function postFeeData(method, total) {
   };
 
   try {
-    const res = await fetch("https://deepamukil1.onrender.com", {
+    const res = await fetch(""https://deepamukil1.onrender.com"", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -169,7 +168,6 @@ byId('generateReceipt').addEventListener('click',()=>{
   if(!(total>0)){alert('Add fee items before generating receipt.');return}
   const method=document.querySelector('.tab.active').dataset.tab.toUpperCase();
 
-  // 🔥 Send to backend
   postFeeData(method,total);
 
   const win=window.open('','_blank');
@@ -182,7 +180,7 @@ byId('generateReceipt').addEventListener('click',()=>{
     <p>Email: ${byId('email').value}</p>
     <p>Notes: ${byId('notes').value}</p>
     <h2>Items</h2>
-    <ul>${state.items.map(i=>`<li>${i.type}: ₹${i.amt}</li>`).join('')}</ul>
+    <ul>${state.items.map(i=><li>${i.type}: ₹${i.amt}</li>).join('')}</ul>
     <p>Discount: ₹${byId('discount').value}</p>
     <p>Late Fee: ₹${byId('lateFee').value}</p>
     <h3>Grand Total: ₹${total}</h3>
@@ -194,8 +192,17 @@ byId('payUPI').addEventListener('click',()=>{
   if(!validateStudent()){return}
   const total=Number(grandTotal.textContent.replace(/[^0-9.]/g,''));
   if(!(total>0)){alert('Add items first');return}
+
   postFeeData("UPI", total);
-  alert('This would open your UPI app with payment details pre-filled.');
+
+  // ✅ Generate UPI deep link
+  const upiID = "krishdpi2006@oksbi";   // college UPI ID
+  const name = "Krishnakumar S";        // receiver name
+  const note = "College Fee Payment";   // note
+  const link = upi://pay?pa=${upiID}&pn=${encodeURIComponent(name)}&am=${total}&cu=INR&tn=${encodeURIComponent(note)};
+
+  // Redirect to UPI app
+  window.location.href = link;
 });
 
 byId('mockGateway').addEventListener('click',()=>{
